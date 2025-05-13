@@ -1,5 +1,5 @@
 from tkinter import Tk, BOTH, Canvas
-
+from point_line import *
 class Window:
 
     def __init__(self, width, height):
@@ -24,5 +24,8 @@ class Window:
         while self.window_running is True:
             self.redraw()
     
+    def draw_line(self, line, fill_color):
+        line.draw(self.canvas, fill_color=fill_color)
+
     def close(self):
         self.window_running = False
