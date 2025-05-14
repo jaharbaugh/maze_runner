@@ -38,3 +38,20 @@ class Cell():
             end_point = Point(self.x2, self.y2)
             bottom = Line(start_point, end_point)
             bottom.draw(self.win.canvas, "black")
+
+    def draw_move(self, to_cell, undo=False):
+        mx1 = (self.x1 + self.x2)/2
+        my1 = (self.y1 + self.y2)/2
+
+        mx2 = (to_cell.x1 + to_cell.x2)/2
+        my2 = (to_cell.y1 + to_cell.y2)/2
+
+        start_mid_point = Point(mx1, my1)
+        end_mid_point = Point(mx2, my2)
+        move_line = Line(start_mid_point, end_mid_point)
+        
+        if undo is False:
+            move_line.draw(self.win.canvas, "red")
+        else:
+            move_line.draw(self.win.canvas, "gray")
+    
