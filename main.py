@@ -2,20 +2,20 @@ from tkinter import Tk, BOTH, Canvas
 from window import *
 from point_line import *
 from cell import *
+from maze import *
 
-win = Window(800, 600)
+def main():
+    num_rows = 12      # Change these numbers to resize your maze
+    num_cols = 16
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
 
-c1 = Cell(win, 50, 50, 100, 100, True, True, True, False)
-c1.draw()
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
 
-c2 = Cell(win, 100, 50, 150, 100, True, True, False, True)
-c2.draw()
+    win.wait_for_close()
 
-
-c1.draw_move(c2, False)
-
-win.wait_for_close()
-
-
-
-
+main()

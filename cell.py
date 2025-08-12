@@ -1,9 +1,10 @@
 from point_line import *
 class Cell():
-    def __init__(self, win, 
+    def __init__(self, 
                  x1, x2, y1, y2,
                  has_right=True, has_left=True,
-                 has_top=True, has_bottom=True):
+                 has_top=True, has_bottom=True, win=None,
+                 visited=False):
         
         self.has_right_wall = has_right
         self.has_left_wall = has_left
@@ -17,27 +18,49 @@ class Cell():
 
         self.win = win
 
+        self.visited = visited
+
     def draw(self):
         if self.has_left_wall is True:
             start_point = Point(self.x1, self.y1)
             end_point = Point(self.x1, self.y2)
             left = Line(start_point, end_point)
             left.draw(self.win.canvas, "black")
+        else:
+            start_point = Point(self.x1, self.y1)
+            end_point = Point(self.x1, self.y2)
+            left = Line(start_point, end_point)
+            left.draw(self.win.canvas, "white")
         if self.has_right_wall is True:
             start_point = Point(self.x2, self.y1)
             end_point = Point(self.x2, self.y2)
             right = Line(start_point, end_point)
             right.draw(self.win.canvas, "black")
+        else:
+            start_point = Point(self.x2, self.y1)
+            end_point = Point(self.x2, self.y2)
+            right = Line(start_point, end_point)
+            right.draw(self.win.canvas, "white")
         if self.has_top_wall is True:
             start_point = Point(self.x1, self.y1)
             end_point = Point(self.x2, self.y1)
             top = Line(start_point, end_point)
             top.draw(self.win.canvas, "black")
+        else:
+            start_point = Point(self.x1, self.y1)
+            end_point = Point(self.x2, self.y1)
+            top = Line(start_point, end_point)
+            top.draw(self.win.canvas, "white")
         if self.has_bottom_wall is True:
             start_point = Point(self.x1, self.y2)
             end_point = Point(self.x2, self.y2)
             bottom = Line(start_point, end_point)
             bottom.draw(self.win.canvas, "black")
+        else:
+            start_point = Point(self.x1, self.y2)
+            end_point = Point(self.x2, self.y2)
+            bottom = Line(start_point, end_point)
+            bottom.draw(self.win.canvas, "white")
 
     def draw_move(self, to_cell, undo=False):
         mx1 = (self.x1 + self.x2)/2
